@@ -1,6 +1,7 @@
 # tds-kaggle-7
 
-This repo contains my solutions to the [Challenge #25 of the Datascience.net platform](https://www.datascience.net/fr/challenge/25/details).
+This repo contains my solutions to the [Challenge #25 of the Datascience.net platform](https://www.datascience.net/fr/challenge/25/details) - **October 2016**.
+
 My best solution (`sklearn/sklearn_optim`) was ranked 25th. Part of this work has been presented at Toulouse Data Science Meetup (TDS).
 
 ## Jupyter Notebooks & Scikit-learn
