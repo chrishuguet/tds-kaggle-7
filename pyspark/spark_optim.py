@@ -52,17 +52,13 @@ spark = SparkSession \
             .builder \
             .master('local') \
             .appName('challenge25') \
-            .config('spark.sql.warehouse.dir', 'file:///D:/tools/Anaconda2/Scripts/spark-warehouse') \
             .getOrCreate()
-            # Conf "spark.sql.warehouse.dir" --> https://issues.apache.org/jira/browse/SPARK-15893
-
-spark.sparkContext.setCheckpointDir('file:///D:/Dev/dataScience/kaggle/challenge_25_data/cache')
             
 try:
     logTime('read')
 
-    traindf = spark.read.csv('D:/Dev/dataScience/kaggle/challenge_25_data/full/boites_medicaments_train.csv', sep=';', header=True)
-    testdf = spark.read.csv('D:/Dev/dataScience/kaggle/challenge_25_data/full/boites_medicaments_test.csv', sep=';', header=True)
+    traindf = spark.read.csv('../resources/boites_medicaments_train.csv', sep=';', header=True)
+    testdf = spark.read.csv('../resources/boites_medicaments_test.csv', sep=';', header=True)
     
     logTime('logprix')
     t0 = time.time()    
@@ -110,6 +106,7 @@ try:
     vectorAssembler = VectorAssembler(inputCols=features, outputCol='features')
     train_lp_df = vectorAssembler.transform(traindf_temp).select(col('logprix'), col('features'))
     train_lp_df.show(3)
+
     # Split dataset for train & test
     logTime('randomForest')
     (train, test) = train_lp_df.randomSplit([0.8, 0.2])
